@@ -1,70 +1,107 @@
 // Medium 5 Practice Questions
-// (Goal: mutation vs non-mutation + method choice)
+// M1
+const users = [
+    { name: "A", age: 20},
+    {name: "B", age: 30}
+];
 
-// M1. Predict output
-
-const arr = ["A", "B", "C"];
-arr.pop();
-// it will remove the last element "C" from the array
-console.log(arr); // ["A", "B"]
-console.log(" ")
-
-arr.unshift("Z");
-// it will add "Z" at the start of the array
-console.log(arr); // ["Z", "A", "B"]
-console.log(" ")
+console.log(users)
 console.log(" ")
 
-// M2. map() → objects
-const Languages = ["React", "Javascript"];
-console.log(Languages); // ["React", "Javascript"]
-console.log(" ")
-const langObjects =Languages.map(lang => ({ name: lang}));
-// it will create an array of objects with name property
-console.log(langObjects); // [ { name: "React"}, { name: "Javascript"} ]
+const userDescriptions = users.map(user => `${user.name} is ${user.age}`);
+console.log(userDescriptions); // Output: [ 'A is 20', 'B is 30' ]
 console.log(" ")
 
-// M3. filter()
-
-const numbers = [5, 10, 15, 20, 25];
-const result = numbers.filter(num => num >= 15);
-// it will create array with numbers greate and equal to 15 and store in result
-console.log(result); // [15, 20, 25]
-// original array unchanged and new array is created
-console.log(numbers); // [5, 10, 15, 20, 25]
+// M2
+const numbers = [ 10, 15, 20, 25, 30];
+const filteredNumbers = numbers.filter(num => num % 10 === 0);
+console.log(filteredNumbers); // Output: [10, 20, 30]
 console.log(" ")
 
-// M4. slice() vs splice()
-const letters = ["A", "B", "C", "D"];
-const sliced = letters.slice(1,3);
-// it will create a new array with name of sliced and it will have ealements from index 1 to 2;
-console.log(sliced); // ["B", "C"]
-// slice does not mutate the original array and a new array is created 
-console.log(letters); // ["A", "B", "C", "D"]
-console.log(" ")
-console.log(" ")
+// M3
+const user = {
+    id: 1,
+    profile: {
+         userName: "john",
+         email: "john@test.com"
+    }
+};
 
-// now splice
-const spliced = letters.splice(1,2);
-// it will remove 2 elements from index 1 and store it in spiced array
-console.log(spliced);// ["B", "C"]
-// splice mutates the original array
-console.log(letters); // ["A", "D"]
-console.log(" ")
+const { userName, email } = user.profile;
+console.log(userName); // Output: john
+console.log(email); // Output:
+console.log(" ");
+
+// M4
+function multiplier(x) {
+    return function (y) {
+        return x * y;
+    }
+}
+
+const double = multiplier(2);
+console.log(double(5)); // Output: 10
 console.log(" ")
 
 
-// M5. sort() trap
-const nums = [100, 5, 20];
-nums.sort();
-// it will sort the array in place but as strings so the output will be different if we dont give compare function currently it is string so js checks first character of each number
-console.log(nums); // [100, 20, 5] (sorted as strings, not numbers)
-// sort mutates the original array
-console.log(" ")
+// M5
+const user1 = {
+    name: "Alex",
+    skills: ["JavaScript", "React"]
+};
+
+const copy = {...user1 };
+copy.skills.push("Node.js");
+
+console.log(user1.skills); // Output: [ 'JavaScript', 'React', 'Node.js' ]
+console.log(copy.skills); // Output: [ 'JavaScript', 'React', 'Node.js' ]
 console.log(" ")
 
-// which is wrong way to sort numbers? Without compare function
-const fixedSort = nums.sort((a,b) => a - b);
-console.log(fixedSort); // [5, 20, 100] (sorted as numbers)
+// why users.skills also changed because the skills array is still referenced in both user1 and copy.
+
+// To fix this, we need to create a shallow copy of the skills array as well
+const user2 = {
+    name: "Alex",
+    skills: ["JavaScript", "React"]
+};
+
+const copy2 = {...user2, skills: [...user2.skills] };
+copy2.skills.push("Node.js");
+
+console.log(user2.skills); // Output: [ 'JavaScript', 'React' ]
+console.log(copy2.skills); // Output: [ 'JavaScript', 'React', 'Node.js' ]
+console.log(" ")
+
+// M6
+const products = [
+    { name: "Laptop", price: 50000 },
+    { name: "Phone", price: 20000 },
+    { name: "Tablet", price: 30000 }
+];
+
+const mapFilterProducts = products.filter(p => p.price > 25000).map(p => p.name);
+console.log(mapFilterProducts); // Output: [ 'Laptop', 'Tablet' ]
+console.log(" ")
+
+// M7
+function outer() {
+    let count = 0;
+
+    function inner() {
+        count++;
+        console.log(count);
+    }
+
+    return inner;
+}
+
+const counter = outer();
+counter(); // Output: 1
+counter(); // Output: 2
+counter(); // Output: 3
+
 console.log(" ")
 console.log(" ")
+// Explaination: the inner function is called within out function, it has access to the count variable defined in the outer function's scope. Each time inner is invoked, it increments count and logs the updated value. 
+
+

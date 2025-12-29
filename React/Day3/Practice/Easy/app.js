@@ -1,46 +1,112 @@
 // Easy 5 Practice Questions
-// (Goal: confidence with basics & output prediction)
-
-// E1. Access & length
-const fruits = ['Apple', 'Banana', 'Mango'];
-console.log(fruits[1]); //Banana
-console.log(fruits[3]); // undefined
-console.log(fruits.length); // 3
-console.log(" ")
-console.log(" ")
-
-// E2. push() mutation
-const numbers = [1, 2];
-numbers.push(3); // it will add 3 at the end of the array
-console.log(numbers); // [1, 2, 3]
-// Yes push mutates the original array
-console.log(" ")
-console.log(" ")
-
-// E3. includes()
-const pets = ['Dog', 'Cat', 'Bird'];
-console.log(pets.includes("Cat")); // true
-console.log(pets.includes("Fish")); // false
-console.log(pets.includes("dog")); // false (case-sensitive)
-console.log(" ")
-console.log(" ")
-
-
-// E4. map() basic
-const nums = [1, 2, 3];
-const doubled = nums.map(n => n *2); // [2, 4, 6]
-console.log(doubled); // [2, 4, 6]
-console.log(nums); // [1, 2, 3] (original array unchanged)
-// doubled array changed, original nums array unchanged
-console.log(" ")
-console.log(" ")
-
-// E5. findIndex()
-const scores = [10, 20, 30];
-const scoreIndex = scores.findIndex(score => score === 20); // 1
-console.log(scoreIndex); // 1
-
-const notFoundIndex = scores.findIndex(score => score === 40); // -1
-console.log(notFoundIndex); // -1
+// E1
+const fruits = ["apple", "banana", "mango"]
+fruits.push("orange")
+fruits.shift()
+console.log(fruits) // Output: [ 'banana', 'mango', 'orange' ]
+    
 console.log(" ")
 console.log(" ")    
+
+// E2
+const nums = [1, 2, 3, 4];
+const doubleNums = nums.map(num => num *2);
+console.log(doubleNums); // Output: [2, 4, 6, 8]
+
+console.log(" ")
+console.log(" ")
+
+// E3
+const ages = [12, 18, 21, 16, 30];
+const filteredAges = ages.filter(age => age >= 18);
+console.log(filteredAges); // Output: [18, 21, 30]
+
+console.log(" ")
+console.log(" ")
+
+// E4
+const names = ["Ram", "Shyam", "Amit"];
+const indexName = names.indexOf("Amit");
+console.log(indexName); // Output: 2
+
+console.log(" ")
+console.log(" ")
+
+// E5
+const user = {
+    name: "Ravi",
+    age: 25,
+    city: "Mumbai"
+};
+
+const { name, city } = user;
+console.log(name); // Output: Ravi
+console.log(city); // Output: Mumbai
+
+console.log(" ")
+console.log(" ")    
+
+// E6
+const product = {
+    id: 101,
+    price: 500,
+    category: "Books"
+};
+
+const {price, category} = product;
+console.log(price); // Output: 500
+console.log(category); // Output: Books
+
+console.log(" ")
+console.log(" ")    
+
+// E7
+const arr1 = [1, 2];
+const arr2 = [3, 4];
+const mergeArray = [...arr1, ...arr2];
+console.log(mergeArray); // Output: [1, 2, 3, 4]
+
+console.log(" ")
+console.log(" ")
+
+// E8
+function greet(name) {
+    return "Hello " + name;
+}
+console.log(greet("Alice")); // Output: Hello Alice
+
+console.log(" ")
+console.log(" ")
+
+// E9
+function square(n) {
+    return n * n;
+}
+const arrowSquare = n => n * n;
+console.log(square(4)); // Output: 16
+console.log(arrowSquare(5)); // Output: 25
+
+console.log(" ")
+console.log(" ")
+
+// E10
+let a = 10;
+let b = a;
+b = 20;
+console.log(a); // Output: 10
+console.log(b); // Output: 20
+
+console.log(" ")
+console.log(" ")
+
+let obj1 = { x:10 };
+let obj2 = obj1;
+obj2.x = 20;
+console.log(obj1.x); // Output: 20
+console.log(obj2.x); // Output: 20
+
+console.log(" ")
+console.log(" ")
+
+
+// End of Easy Practice Questions
